@@ -1,0 +1,37 @@
+{
+  "name": "@algebraquest/api",
+  "private": true,
+  "version": "0.0.0",
+  "type": "commonjs",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsup src/server.ts --format cjs",
+    "start": "node dist/server.js",
+    "db:seed": "tsx src/prisma/seed.ts",
+    "postinstall": "prisma generate"
+  },
+  "prisma": {
+    "seed": "tsx src/prisma/seed.ts"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.0.0",
+    "cors": "latest",
+    "dotenv": "latest",
+    "express": "latest",
+    "express-rate-limit": "latest",
+    "helmet": "latest",
+    "morgan": "latest",
+    "nanoid": "latest",
+    "zod": "latest"
+  },
+  "devDependencies": {
+    "@types/cors": "latest",
+    "@types/express": "latest",
+    "@types/morgan": "latest",
+    "@types/node": "latest",
+    "prisma": "^6.0.0",
+    "tsup": "latest",
+    "tsx": "latest",
+    "typescript": "^5.3.0"
+  }
+}

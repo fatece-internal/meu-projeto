@@ -1,0 +1,18 @@
+{
+  "name": "algebraquest",
+  "private": true,
+  "packageManager": "npm@11.9.0",
+  "workspaces": ["apps/*", "packages/*"],
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "db:migrate": "cd apps/api && npx prisma migrate dev",
+    "db:seed": "cd apps/api && npx prisma db seed",
+    "db:studio": "cd apps/api && npx prisma studio",
+    "setup": "docker-compose up -d postgres && sleep 3 && npm run db:migrate && npm run db:seed"
+  },
+  "devDependencies": {
+    "turbo": "latest",
+    "typescript": "^5.3.0"
+  }
+}

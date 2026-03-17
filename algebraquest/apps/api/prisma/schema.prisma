@@ -1,0 +1,41 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Room {
+  id         String   @id @default(cuid())
+  roomId     String   @unique // e.g. "abc-123" (shown in URL)
+  seed       String // same as roomId — used for deterministic gen
+  difficulty String // 'easy' | 'medium' | 'insane'
+  topics     Json // string[] of TopicKey
+  createdAt  DateTime @default(now())
+  expiresAt  DateTime // createdAt + 24 hours
+  entries    LeaderboardEntry[]
+
+  @@index([roomId])
+  @@map("rooms")
+}
+
+model LeaderboardEntry {
+  id                String   @id @default(cuid())
+  roomId            String
+  playerName        String
+  playerId          String // nanoid stored in localStorage
+  score             Int
+  livesLeft         Int
+  questionsAnswered Int
+  createdAt         DateTime @default(now())
+
+  room Room @relation(fields: [roomId], references: [roomId], onDelete: Cascade)
+
+  @@unique([roomId, playerId])
+  @@index([roomId, score(sort: Desc)])
+  @@map("leaderboard_entries")
+}
+

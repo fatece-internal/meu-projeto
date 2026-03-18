@@ -23,15 +23,15 @@
     "zustand": "latest"
   },
   "devDependencies": {
+    "@tailwindcss/postcss": "latest",
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
-    "@tailwindcss/postcss": "latest",
-    "autoprefixer": "latest",
+    "autoprefixer": "^10.4.27",
     "eslint": "latest",
     "eslint-config-next": "latest",
-    "postcss": "latest",
-    "tailwindcss": "latest",
+    "postcss": "^8.5.8",
+    "tailwindcss": "^3.4.19",
     "typescript": "^5.3.0"
   }
 }
